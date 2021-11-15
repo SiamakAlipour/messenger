@@ -25,7 +25,7 @@
 		text-align: center;
 		color: #ffffff;
 		letter-spacing: 1.185em;
-		pointer-events: none;
+		user-select: none;
 	}
 	&__content {
 		position: absolute;
@@ -49,6 +49,7 @@
 			text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
 			font-size: 72px;
 			line-height: 116px;
+			user-select: none;
 		}
 	}
 	&__footer {
@@ -64,6 +65,10 @@
 				line-height: 34px;
 				letter-spacing: 0.035em;
 				color: #b33663;
+				transition: 0.4s;
+				&:hover {
+					transform: scale(1.05);
+				}
 			}
 		}
 	}

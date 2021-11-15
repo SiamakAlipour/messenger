@@ -40,7 +40,13 @@ function Login() {
 								className='form-check-input '
 							/>
 						</div>
-						<button className='btn btn-primary'>Login</button>
+						<button
+							className='btn btn-primary'
+							onClick={(e) => {
+								e.preventDefault();
+							}}>
+							Login
+						</button>
 					</form>
 				</Formik>
 				<div className='login__footer'>
