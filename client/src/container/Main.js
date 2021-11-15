@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 function Main() {
 	const [isLogged, setIsLogged] = useState(false);
 	if (!isLogged) {
-		return <Navigate to='/login' />;
+		return <Navigate to='/messenger/login' />;
 	}
 	return (
 		<div className='main'>

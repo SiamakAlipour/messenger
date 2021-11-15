@@ -44,7 +44,7 @@ function Login() {
 					</form>
 				</Formik>
 				<div className='login__footer'>
-					<Link to='/register'>
+					<Link to='/messenger/register'>
 						<h3>create an account</h3>
 					</Link>
 				</div>

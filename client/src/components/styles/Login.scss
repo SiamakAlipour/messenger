@@ -28,6 +28,7 @@
 		pointer-events: none;
 	}
 	&__content {
+		position: absolute;
 		width: 645px;
 		height: 575px;
 		background: rgba(233, 233, 233, 0.4);
@@ -54,9 +55,9 @@
 		position: absolute;
 		bottom: 25px;
 		left: 75px;
-		a {
+		> a {
 			text-decoration: none;
-			h3 {
+			> h3 {
 				cursor: pointer;
 				font-size: 15px;
 				font-weight: bold;
