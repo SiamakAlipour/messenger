@@ -1,8 +1,15 @@
 import React from 'react';
 import './styles/Login.scss';
 import { Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Login() {
+	let navigate = useNavigate();
+	const handleLogin = (e) => {
+		e.preventDefault();
+		console.log('hello');
+		navigate('/', { replace: true });
+	};
+
 	return (
 		<div className='login'>
 			<div className='login__title'>
@@ -36,15 +43,13 @@ function Login() {
 							</label>
 							<input
 								type='checkbox'
-								name='remember'
+								name='rememberMe'
 								className='form-check-input '
 							/>
 						</div>
 						<button
 							className='btn btn-primary'
-							onClick={(e) => {
-								e.preventDefault();
-							}}>
+							onClick={handleLogin}>
 							Login
 						</button>
 					</form>
