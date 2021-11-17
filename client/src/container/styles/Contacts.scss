@@ -1,30 +1,88 @@
 .contacts {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 100%;
-	// background-color: yellow;
-	// background-image: url(../../assets/images/bg.png);
-	// background-position: center center;
-	// background-repeat: no-repeat;
-	// background-size: cover;
-	background: #12c2e9; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to bottom,
-		#12c2e9,
-		#7bc1d1,
-		#c990e6
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to bottom,
-		#12c2e9,
-		#7bc1d1,
-		#c990e6
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	&__header {
 		background-color: #f8f6ff;
 		height: 80px;
 		width: 100%;
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	&__selfAvatar {
+		width: 60px;
+		height: 60px;
+		background-color: rgba(168, 168, 168, 0.699);
+		border-radius: 50%;
+		margin-right: 20px;
 
-		// box-shadow: 8px 5px 10px 1px rgba($color: black, $alpha: 0.1);
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		position: relative;
+		> img {
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			object-fit: cover;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+		}
+		.MuiSvgIcon-root {
+			font-size: 55px;
+			color: whitesmoke;
+		}
+	}
+	&__selfOptions {
+		flex: 0.35;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		color: black;
+
+		.settingsIcon {
+			transition: 0.4s;
+			&:hover {
+				transform: rotate(-50deg);
+			}
+		}
+	}
+	&__content {
+		width: 100%;
+		flex: 1;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		background: #12c2e9;
+		background: -webkit-linear-gradient(
+			to bottom,
+			#9aecff,
+			#7bc1d1,
+			#c990e6
+		);
+		background: linear-gradient(to bottom, #9aecff, #7bc1d1, #c990e6);
+		padding-bottom: 20px;
+		overflow-y: scroll;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			width: 7px;
+		}
+		&::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: rgb(126, 126, 126);
+			outline: 1px solid white;
+			border-radius: 50px;
+			&:hover {
+				width: 10px;
+			}
+		}
 	}
 }

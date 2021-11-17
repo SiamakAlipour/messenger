@@ -1,0 +1,61 @@
+.contactItem {
+	width: 90%;
+	height: 106px;
+	background: #f3f3f3;
+	border-radius: 53px 10px 10px 53px;
+	// margin: auto;
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+
+	&__avatar {
+		width: 90px;
+		height: 90px;
+		background-color: rgba(168, 168, 168, 0.699);
+		border-radius: 50%;
+		margin-right: 20px;
+		// box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		position: relative;
+		> img {
+			position: absolute;
+			width: 90px;
+			height: 90px;
+			object-fit: cover;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+		}
+		> .MuiSvgIcon-root {
+			font-size: 75px;
+			color: whitesmoke;
+		}
+	}
+	&__msg {
+		width: 100%;
+		height: 100%;
+		flex: 1;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		cursor: pointer;
+		overflow: hidden;
+		> h5 {
+			color: rgb(78, 78, 78);
+			font-weight: bold;
+		}
+		> p {
+			direction: rtl;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 200px;
+			color: gray;
+			font-size: 14px;
+		}
+	}
+}

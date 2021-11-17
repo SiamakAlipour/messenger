@@ -77,7 +77,7 @@ function Register() {
 					)}
 				</Formik>
 				<div className='register__footer'>
-					<Link to='/messenger/login'>
+					<Link to='/account/login'>
 						<h3>sign in</h3>
 					</Link>
 				</div>
