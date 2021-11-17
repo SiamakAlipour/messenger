@@ -32,12 +32,41 @@ function Chat() {
 					</div>
 				</div>
 				<div className='chat__headerRightPart'>
-					<h2>Lorem Ipsum</h2>
+					<h2>ali_aziz</h2>
 				</div>
 			</div>
 			<div className='chat__content'>
 				{/* chat part */}
-				<div className='chat__contentPart'></div>
+				<div className='chat__contentPart'>
+					<div class='msg'>
+						<div class='bubble alt'>
+							<div class='txt'>
+								<div className='txt__wrap'>
+									<span class='name alt'>Siamak</span>
+									<span class='timestamp'>10:22 pm</span>
+								</div>
+
+								<p class='message'>سلام علی نجسن</p>
+							</div>
+							<div class='bubble-arrow alt'></div>
+						</div>
+					</div>
+					<div class='msg'>
+						<div class='bubble'>
+							<div class='txt'>
+								<div className='txt__wrap'>
+									<span class='name'>ali_aziz</span>
+									<span class='timestamp'>10:25 pm</span>
+								</div>
+								<span class='message'>
+									سلام بالا هارداسان گه گداخ گیمه سورا ایش
+									گوراخ{' '}
+								</span>
+							</div>
+							<div class='bubble-arrow'></div>
+						</div>
+					</div>
+				</div>
 				{/* chat input */}
 
 				<form className='chat__contentInput'>
