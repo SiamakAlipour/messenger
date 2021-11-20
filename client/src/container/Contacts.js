@@ -56,6 +56,20 @@ function Contacts() {
 						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
 					}
 				/>
+				<ContactItem
+					contactName={'hitler'}
+					lastMessage={'سیا من اولممیشم ها نیاران گالما'}
+					avatar={
+						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
+					}
+				/>
+				<ContactItem
+					contactName={'hitler'}
+					lastMessage={'سیا من اولممیشم ها نیاران گالما'}
+					avatar={
+						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
+					}
+				/>
 			</ScrollContainer>
 		</div>
 	);
