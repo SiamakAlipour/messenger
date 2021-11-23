@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContactItem from '../components/ContactItem';
 import './styles/Contacts.scss';
 import PersonIcon from '@mui/icons-material/Person';
@@ -6,7 +6,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useParams } from 'react-router-dom';
 function Contacts() {
+	let params = useParams();
+
 	return (
 		<div className='contacts'>
 			<div className='contacts__header'>
