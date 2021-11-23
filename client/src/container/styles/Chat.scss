@@ -62,112 +62,6 @@
 			height: 100%;
 			flex: 0.9;
 			overflow-y: auto;
-			.msg {
-				width: 100%;
-				height: auto;
-				// display: block;
-				overflow: hidden;
-				.bubble {
-					float: left;
-					max-width: 75%;
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-
-					background: #ebebeb;
-					border-radius: 5px;
-					position: relative;
-					margin: 10px 0 3px 25px;
-					box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
-
-					&.alt {
-						margin: 10px 25px 3px 0px;
-						background: #dcf8c6;
-						float: right;
-					}
-					&.follow {
-						margin: 2px 0 3px 25px;
-					}
-
-					&.altfollow {
-						margin: 2px 25px 3px 0px;
-						background: #dcf8c6;
-						float: right;
-					}
-					.txt {
-						padding: 8px 0 8px 0;
-						width: 100%;
-						display: flex;
-						align-items: center;
-						flex-direction: column;
-						&__wrap {
-							width: 100%;
-
-							display: flex;
-							align-items: center;
-							justify-content: space-between;
-						}
-						.name {
-							font-weight: 600;
-							font-size: 14px;
-
-							padding: 0 0 0 15px;
-							margin: 0 20px 4px 0;
-							color: #3498db;
-
-							span {
-								font-weight: normal;
-								color: #b3b3b3;
-								overflow: hidden;
-							}
-							&.alt {
-								color: #2ecc51;
-							}
-						}
-						.message {
-							font-size: 14px;
-
-							padding: 0 15px 0 15px;
-							margin: auto;
-							margin-top: 5px;
-							color: #2b2b2b;
-						}
-						.timestamp {
-							font-size: 11px;
-							padding: 0 15px 0 0;
-							text-transform: uppercase;
-							color: #999;
-						}
-					}
-					.bubble-arrow {
-						position: absolute;
-						float: left;
-						left: -11px;
-						top: 0px;
-						&.alt {
-							bottom: 20px;
-							left: auto;
-							right: 4px;
-							float: right;
-						}
-					}
-					.bubble-arrow:after {
-						content: '';
-						position: absolute;
-						border-top: 15px solid #ebebeb;
-						border-left: 15px solid transparent;
-						border-radius: 4px 0 0 0px;
-						width: 0;
-						height: 0;
-						//box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-						//looks like I can't give a shadow to the arrows
-					}
-					.bubble-arrow.alt:after {
-						border-top: 15px solid #dcf8c6;
-						transform: scaleX(-1);
-					}
-				}
-			}
 		}
 		&Input {
 			display: flex;
@@ -213,7 +107,8 @@
 			padding-left: 0px;
 			&LeftPart {
 				flex: 0.3;
-				.buttonShow {
+
+				> .MuiSvgIcon-root {
 					display: block;
 				}
 			}
