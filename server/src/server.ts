@@ -1,12 +1,17 @@
-import express , {Request , Response , Application} from 'express';
+import express, { Application } from 'express';
+import mongoose from 'mongoose';
+import user from './routes/user';
 
-const app : Application = express();
+const app: Application = express();
 
-app.get("/" , (req :Request,res : Response) => {
-    res.send("hello");
-})
+app.use('/api/user', user);
 
-const PORT = process.env.PORT || "8001";
-app.listen(PORT , () => {
+const DBUri: string = process.env.DB || '';
+mongoose.connect(DBUri, () => {
+    console.log(`database connected`);
+});
+
+const PORT = process.env.PORT || '8001';
+app.listen(PORT, () => {
     console.log(`server is running on Port : ${8001}`);
-})
+});

@@ -11,7 +11,11 @@ const UserSchema: Schema = new mongoose.Schema({
         type: String,
         required: true,
         min: 8,
-        max: 255,
+        max: 1024,
+    },
+    email: {
+        type: String,
+        required: true,
     },
     Date: {
         type: Date,
