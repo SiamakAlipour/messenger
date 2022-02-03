@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const UserSchema: Schema = new mongoose.Schema({
+const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
@@ -21,6 +21,34 @@ const UserSchema: Schema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    admin: {
+        type: Boolean,
+        default: false,
+    },
+    contactList: [
+        {
+            name: {
+                type: String,
+                required: true,
+            },
+            chat: [
+                {
+                    message: {
+                        type: String,
+                        required: true,
+                    },
+                    timestamp: {
+                        type: String,
+                        required: true,
+                    },
+                    receiver: {
+                        type: Boolean,
+                        required: true,
+                    },
+                },
+            ],
+        },
+    ],
 });
 
 export default mongoose.model('users', UserSchema);
