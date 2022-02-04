@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const UserSchema = new Schema({
+const UserSchema: Schema = new Schema({
     username: {
         type: String,
         required: true,
@@ -31,22 +31,6 @@ const UserSchema = new Schema({
                 type: String,
                 required: true,
             },
-            chat: [
-                {
-                    message: {
-                        type: String,
-                        required: true,
-                    },
-                    timestamp: {
-                        type: String,
-                        required: true,
-                    },
-                    receiver: {
-                        type: Boolean,
-                        required: true,
-                    },
-                },
-            ],
         },
     ],
 });

@@ -81,4 +81,20 @@ route.post('/login', async (req: Request, res: Response) => {
     //     token,
     // });
 });
+// send message
+route.post('/message/:username', async (req: Request, res: Response) => {
+    const { receiverName, message, timestamp, received } = req.body;
+    const { username } = req.params;
+
+    const findUser = await User.findOne({ username: username.toLowerCase() });
+    // const findReceiver = await User.findOne({
+    //     username: username.toLowerCase(),
+    //     'contactList.name': receiverName,
+    // });
+    let index = findUser.contactList.findIndex(
+        (element: any) => element.name === receiverName
+    );
+
+    res.send(findUser.contactList[index].chat);
+});
 export default route;

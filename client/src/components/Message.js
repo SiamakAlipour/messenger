@@ -1,7 +1,7 @@
-import React from 'react';
-import './styles/Message.scss';
-function Message({ sender, name, timestamp, msg }) {
-	return sender ? (
+import React from 'react'
+import './styles/Message.scss'
+function Message({ received, name, timestamp, msg }) {
+	return !received ? (
 		<div className='msg'>
 			<div className='bubble'>
 				<div className='txt'>
@@ -28,7 +28,7 @@ function Message({ sender, name, timestamp, msg }) {
 				<div className='bubble-arrow alt'></div>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Message;
+export default Message

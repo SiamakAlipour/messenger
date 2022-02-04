@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import './styles/Chat.scss';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import PersonIcon from '@mui/icons-material/Person';
-import TelegramIcon from '@mui/icons-material/Telegram';
-import moment from 'moment';
-import Message from '../components/Message';
+import React, { useState } from 'react'
+import './styles/Chat.scss'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import PersonIcon from '@mui/icons-material/Person'
+import TelegramIcon from '@mui/icons-material/Telegram'
+import moment from 'moment'
+import Message from '../components/Message'
 function Chat() {
-	const [chatInput, setChatInput] = useState('');
+	const [chatInput, setChatInput] = useState('')
 	const [msgList, setMsgList] = useState([
 		{
 			name: 'siamak',
 			timestamp: moment().format('LT'),
 			msg: 'سلام علی نجسن',
-			sender: false,
+			received: true,
 		},
 		{
 			name: 'ali_aziz',
 			timestamp: moment().format('LT'),
 			msg: 'سلام یاخچیم',
-			sender: true,
+			received: false,
 		},
-	]);
+	])
 	const handleInput = (e) => {
-		setChatInput(e.target.value);
-	};
+		setChatInput(e.target.value)
+	}
 	const handleSend = (e) => {
-		e.preventDefault();
+		e.preventDefault()
 		setMsgList([
 			...msgList,
 			{
@@ -34,29 +34,26 @@ function Chat() {
 				msg: chatInput,
 				sender: false,
 			},
-		]);
-		setChatInput('');
-	};
+		])
+		setChatInput('')
+	}
 	const handleClick = () => {
-		let rightPart = document.getElementById('right');
-		let leftPart = document.getElementById('left');
-		let backButton = document.getElementById('backButton');
-		let chatHeader = document.getElementById('chatHeader');
+		let rightPart = document.getElementById('right')
+		let leftPart = document.getElementById('left')
+		let backButton = document.getElementById('backButton')
+		let chatHeader = document.getElementById('chatHeader')
 		// mainPart.style.flexDirection = 'column';
-		rightPart.classList.remove('right__click');
-		leftPart.classList.remove('left__click');
-		backButton.classList.remove('buttonShow');
-		chatHeader.classList.remove('show');
-	};
+		rightPart.classList.remove('right__click')
+		leftPart.classList.remove('left__click')
+		backButton.classList.remove('buttonShow')
+		chatHeader.classList.remove('show')
+	}
 	return (
 		<div className='chat'>
 			<div className='chat__header' id='chatHeader'>
 				<div className='chat__headerLeftPart'>
 					{/* backToContacts */}
-					<ArrowBackIosNewIcon
-						id='backButton'
-						onClick={handleClick}
-					/>
+					<ArrowBackIosNewIcon id='backButton' onClick={handleClick} />
 
 					{/* avatar */}
 					<div className='chat__contactAvatar'>
@@ -72,7 +69,7 @@ function Chat() {
 				<div className='chat__contentPart'>
 					{msgList.map((list, index) => (
 						<Message
-							sender={list.sender}
+							received={list.received}
 							name={list.name}
 							timestamp={list.timestamp}
 							msg={list.msg}
@@ -95,7 +92,7 @@ function Chat() {
 				</form>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default Chat;
+export default Chat
