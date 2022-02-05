@@ -84,7 +84,7 @@ route.post('/login', async (req: Request, res: Response) => {
 // create contact
 route.post('/addContact/:_id', async (req: Request, res: Response) => {
     const { contactName } = req.body;
-    const { _id } = req.params;
+    const { username } = req.params;
     console.log(contactName);
     const findContact = await User.findOne({
         username: contactName.toLowerCase(),
@@ -94,7 +94,7 @@ route.post('/addContact/:_id', async (req: Request, res: Response) => {
     try {
         const addContact = await User.updateOne(
             {
-                _id,
+                username: username.toLowerCase(),
             },
             {
                 $push: {
@@ -104,6 +104,11 @@ route.post('/addContact/:_id', async (req: Request, res: Response) => {
                 },
             }
         );
+        const addChat = new Chat({
+            users: [username, contactName],
+            chat: [],
+        });
+        await addChat.save();
         res.status(200).send(addContact);
     } catch (error) {
         res.status(400).send(error);
