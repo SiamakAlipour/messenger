@@ -3,7 +3,7 @@ import { registerValidation } from '../validation';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-
+import Chat from '../models/Chat';
 const route: Router = express.Router();
 
 //get all users
@@ -26,7 +26,7 @@ route.get('/:_id', (req: Request, res: Response) => {
 });
 // register a user
 route.post('/register', async (req: Request, res: Response) => {
-    const { username, password, repeat_password, email, admin } = req.body;
+    const { username, password, email, admin } = req.body;
 
     const { error } = registerValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -81,20 +81,32 @@ route.post('/login', async (req: Request, res: Response) => {
     //     token,
     // });
 });
-// send message
-route.post('/message/:username', async (req: Request, res: Response) => {
-    const { receiverName, message, timestamp, received } = req.body;
-    const { username } = req.params;
+// create contact
+route.post('/addContact/:_id', async (req: Request, res: Response) => {
+    const { contactName } = req.body;
+    const { _id } = req.params;
+    console.log(contactName);
+    const findContact = await User.findOne({
+        username: contactName.toLowerCase(),
+    });
+    if (!findContact) return res.status(404).send({ msg: 'user not found' });
 
-    const findUser = await User.findOne({ username: username.toLowerCase() });
-    // const findReceiver = await User.findOne({
-    //     username: username.toLowerCase(),
-    //     'contactList.name': receiverName,
-    // });
-    let index = findUser.contactList.findIndex(
-        (element: any) => element.name === receiverName
-    );
-
-    res.send(findUser.contactList[index].chat);
+    try {
+        const addContact = await User.updateOne(
+            {
+                _id,
+            },
+            {
+                $push: {
+                    contactList: {
+                        name: contactName.toLowerCase(),
+                    },
+                },
+            }
+        );
+        res.status(200).send(addContact);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 export default route;
