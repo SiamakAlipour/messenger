@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import user from './routes/user';
-import message from './routes/message';
+import message from './routes/chat';
 import dotenv from 'dotenv';
 
 const app: Application = express();
