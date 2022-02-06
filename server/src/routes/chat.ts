@@ -1,9 +1,31 @@
-import express, { Request, Response, Router } from 'express';
+import express, { Request, Response, Router, NextFunction } from 'express';
 import Chat from '../models/Chat';
+import User from '../models/User';
 const route: Router = express.Router();
 
 route.post('/send', async (req: Request, res: Response) => {
     const { senderName, receiverName, message, timestamp } = req.body;
+    const isContact = await User.findOne({
+        username: receiverName,
+        'contactList.name': senderName,
+    });
+    // if sender is not in recievers contact . first create contat for reciever
+    // then send message
+    if (!isContact) {
+        await User.updateOne(
+            {
+                username: receiverName.toLowerCase(),
+            },
+            {
+                $push: {
+                    contactList: {
+                        name: senderName.toLowerCase(),
+                    },
+                },
+            }
+        );
+    }
+
     try {
         const sendMessage = await Chat.updateOne(
             {
