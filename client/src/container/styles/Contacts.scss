@@ -13,19 +13,17 @@
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-	&__selfAvatar {
-		width: 60px;
-		height: 60px;
-		background-color: rgba(168, 168, 168, 0.699);
-		border-radius: 50%;
-		margin-right: 20px;
-
-		display: grid;
-		place-items: center;
+	&__selfInfo {
+		min-width: 150px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
 		cursor: pointer;
-		position: relative;
+		> p {
+			margin-top: 10px;
+		}
 		> img {
-			position: absolute;
 			width: 60px;
 			height: 60px;
 			object-fit: cover;
@@ -60,12 +58,7 @@
 		align-items: center;
 		flex-direction: column;
 		background: #12c2e9;
-		background: -webkit-linear-gradient(
-			to bottom,
-			#9aecff,
-			#7bc1d1,
-			#c990e6
-		);
+		background: -webkit-linear-gradient(to bottom, #9aecff, #7bc1d1, #c990e6);
 		background: linear-gradient(to bottom, #9aecff, #7bc1d1, #c990e6);
 		padding-bottom: 20px;
 		overflow-y: scroll;

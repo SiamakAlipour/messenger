@@ -82,7 +82,7 @@ route.post('/login', async (req: Request, res: Response) => {
     // });
 });
 // create contact
-route.post('/addContact/:username', async (req: Request, res: Response) => {
+route.post('/contacts/:username', async (req: Request, res: Response) => {
     const { contactName } = req.body;
     const { username } = req.params;
 
@@ -126,7 +126,19 @@ route.post('/addContact/:username', async (req: Request, res: Response) => {
 
         res.status(200).send(addContact);
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send({ error });
+    }
+});
+route.get('/contacts/:username', async (req: Request, res: Response) => {
+    const { username } = req.params;
+
+    try {
+        const contacts = await User.findOne({
+            username: username.toLowerCase(),
+        });
+        res.status(200).send(contacts.contactList);
+    } catch (error) {
+        res.status(400).send({ error });
     }
 });
 export default route;

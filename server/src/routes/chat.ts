@@ -65,8 +65,9 @@ route.post('/send', async (req: Request, res: Response) => {
     //     }
     // }
 });
-route.get('/sync', async (req: Request, res: Response) => {
+route.post('/sync', async (req: Request, res: Response) => {
     const { user1, user2 } = req.body;
+
     try {
         const findMessage = await Chat.findOne({
             users: {
@@ -74,9 +75,9 @@ route.get('/sync', async (req: Request, res: Response) => {
                 $size: 2,
             },
         });
-        res.status(200).send(findMessage.chat);
+        res.status(200).json(findMessage.chat);
     } catch (error) {
-        res.status(404).send(error);
+        res.status(404).send({ error });
     }
 });
 export default route;

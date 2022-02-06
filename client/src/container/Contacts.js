@@ -1,23 +1,65 @@
-import React, { useEffect } from 'react';
-import ContactItem from '../components/ContactItem';
-import './styles/Contacts.scss';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import IconButton from '@mui/material/IconButton';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import ContactItem from '../components/ContactItem'
+import './styles/Contacts.scss'
+// import PersonIcon from '@mui/icons-material/Person'
+import SettingsIcon from '@mui/icons-material/Settings'
+import IconButton from '@mui/material/IconButton'
+import PersonAddIcon from '@mui/icons-material/PersonAdd'
+import ScrollContainer from 'react-indiana-drag-scroll'
+// import { useParams } from 'react-router-dom'
+import axios from '../service/api/baseUrl'
 function Contacts() {
-	let params = useParams();
+	// let params = useParams()
+	const [contacts, setContacts] = useState([])
+	const [lastMessage, setLastMessage] = useState([])
+	// getting contact from api
 
+	useEffect(() => {
+		axios
+			.get(`/account/contacts/siamak`)
+			.then((res) => {
+				setContacts(res.data)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}, [])
+	// getting last message from api
+
+	useEffect(() => {
+		const fetchData = async () => {
+			return await Promise.all(
+				contacts.map((contact) => {
+					const data = axios
+						.post('/message/sync', { user1: contact.name, user2: 'siamak' })
+						.then((res) => {
+							const length = res.data.length
+							const lastPM = res.data[length - 1]
+							return lastPM.message
+						})
+						.catch((err) => {
+							console.log(err)
+						})
+					setLastMessage(...lastMessage, data)
+				})
+			)
+		}
+		fetchData()
+		console.log('lastMessage : ', lastMessage)
+	}, [contacts])
+	// useEffect(() => {
+
+	// }, [lastMessage])
 	return (
 		<div className='contacts'>
 			<div className='contacts__header'>
-				<div className='contacts__selfAvatar'>
+				<div className='contacts__selfInfo'>
 					<img
+						className='contacts_selfInfoImage'
 						src='http://wallpaperwaifu.com/wp-content/uploads/2021/03/satoru-gojo-jujutsu-kaisen-thumb.jpg'
 						alt=''
 					/>
+					<p className='contacts_selfInfoName'>siamak</p>
 				</div>
 
 				<div className='contacts__selfOptions'>
@@ -30,52 +72,18 @@ function Contacts() {
 				</div>
 			</div>
 
-			<ScrollContainer
-				className='contacts__content'
-				hideScrollbars={false}>
-				<ContactItem
-					contactName={'ali_aziz'}
-					lastMessage={
-						'سلام بالا هارداسان گه گداخ گیمه سورا ایش گوراخ'
-					}
-					avatar={''}
-				/>
-				<ContactItem
-					contactName={'bill_gates'}
-					lastMessage={'حالیم بتر خراب دی سیا گلدین پیام ور'}
-					avatar={
-						'https://splash247.com/wp-content/uploads/2020/11/Bill-Gates.jpg'
-					}
-				/>
-				<ContactItem
-					contactName={'hot_devil'}
-					lastMessage={'بیا پاییییییییییین'}
-					avatar={'https://wallpaperaccess.com/full/2634936.png'}
-				/>
-				<ContactItem
-					contactName={'hitler'}
-					lastMessage={'سیا من اولممیشم ها نیاران گالما'}
-					avatar={
-						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
-					}
-				/>
-				<ContactItem
-					contactName={'hitler'}
-					lastMessage={'سیا من اولممیشم ها نیاران گالما'}
-					avatar={
-						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
-					}
-				/>
-				<ContactItem
-					contactName={'hitler'}
-					lastMessage={'سیا من اولممیشم ها نیاران گالما'}
-					avatar={
-						'https://i.pinimg.com/280x280_RS/e2/3c/ae/e23cae42dcac7a435ec5e5586e3522c4.jpg'
-					}
-				/>
+			<ScrollContainer className='contacts__content' hideScrollbars={false}>
+				{contacts.map((contact, index) => (
+					<ContactItem
+						key={contact._id}
+						contactName={contact.name}
+						lastMessage={lastMessage[index]}
+						avatar={''}
+					/>
+				))}
 			</ScrollContainer>
 		</div>
-	);
+	)
 }
 
-export default Contacts;
+export default Contacts
