@@ -82,15 +82,21 @@ route.post('/login', async (req: Request, res: Response) => {
     // });
 });
 // create contact
-route.post('/addContact/:_id', async (req: Request, res: Response) => {
+route.post('/addContact/:username', async (req: Request, res: Response) => {
     const { contactName } = req.body;
     const { username } = req.params;
-    console.log(contactName);
-    const findContact = await User.findOne({
+
+    // check if user is in DB so we can add contact it
+    const findUser = await User.findOne({
         username: contactName.toLowerCase(),
     });
-    if (!findContact) return res.status(404).send({ msg: 'user not found' });
-
+    if (!findUser) return res.status(404).send({ msg: 'user not found' });
+    // check if contact is in contact list so we dont need to add it again
+    const findContact = await User.findOne({
+        username: username.toLowerCase(),
+        'contactList.name': contactName,
+    });
+    if (findContact) return res.status(400).send({ msg: 'contact already in' });
     try {
         const addContact = await User.updateOne(
             {
@@ -104,11 +110,20 @@ route.post('/addContact/:_id', async (req: Request, res: Response) => {
                 },
             }
         );
-        const addChat = new Chat({
-            users: [username, contactName],
-            chat: [],
+        // check if we have a chat db with these two. so we dont need to add it in messages document
+        const isChat = await Chat.findOne({
+            users: {
+                $all: [username, contactName],
+            },
         });
-        await addChat.save();
+        if (!isChat) {
+            const addChat = new Chat({
+                users: [username, contactName],
+                chat: [],
+            });
+            await addChat.save();
+        }
+
         res.status(200).send(addContact);
     } catch (error) {
         res.status(400).send(error);
