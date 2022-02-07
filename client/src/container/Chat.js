@@ -12,6 +12,7 @@ function Chat() {
 	const [chatInput, setChatInput] = useState('')
 	const [msgList, setMsgList] = useState([])
 	const [avatar, setAvatar] = useState('')
+	const user = JSON.parse(localStorage.getItem('user'))
 	const handleInput = (e) => {
 		setChatInput(e.target.value)
 	}
@@ -19,7 +20,7 @@ function Chat() {
 		e.preventDefault()
 		axios
 			.post('/message/send', {
-				senderName: 'siamak',
+				senderName: user.username,
 				receiverName: params.user,
 				message: chatInput,
 				timestamp: moment().format('LLL'),
@@ -28,7 +29,7 @@ function Chat() {
 		setMsgList([
 			...msgList,
 			{
-				name: 'siamak',
+				name: user.username,
 				timestamp: moment().format('LLL'),
 				message: chatInput,
 				receiver: params.user,
@@ -49,7 +50,7 @@ function Chat() {
 	}
 	useEffect(() => {
 		axios
-			.post('/message/sync', { user1: 'siamak', user2: params.user })
+			.post('/message/sync', { user1: user.username, user2: params.user })
 			.then((res) => {
 				setMsgList(res.data)
 			})

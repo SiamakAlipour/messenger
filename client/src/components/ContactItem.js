@@ -8,10 +8,12 @@ function ContactItem({ contactName }) {
 	let navigate = useNavigate()
 	const [lastMessage, setLastMessage] = useState('')
 	const [avatar, setAvatar] = useState('')
+	const user = JSON.parse(localStorage.getItem('user'))
+
 	useEffect(() => {
 		axios
 			.post('/message/sync', {
-				user1: 'siamak',
+				user1: user.username,
 				user2: contactName,
 			})
 			.then((res) => {

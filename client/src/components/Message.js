@@ -4,12 +4,13 @@ import { useParams } from 'react-router'
 function Message({ receiver, timestamp, msg }) {
 	let params = useParams()
 	// 'siamak' haman username login shode khahad bod
-	return receiver !== 'siamak' ? (
+	const user = JSON.parse(localStorage.getItem('user'))
+	return receiver !== user.username ? (
 		<div className='msg'>
 			<div className='bubble alt'>
 				<div className='txt'>
 					<div className='txt__wrap'>
-						<span className='name alt'>{'siamak'}</span>
+						<span className='name alt'>{user.username}</span>
 						<span className='timestamp'>{timestamp}</span>
 					</div>
 

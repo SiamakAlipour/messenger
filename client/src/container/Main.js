@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/Main.scss'
 import { Navigate } from 'react-router-dom'
 import Contacts from './Contacts'
@@ -6,9 +6,10 @@ import Chat from './Chat'
 import { useParams } from 'react-router-dom'
 function Main() {
 	let params = useParams()
-	const [isLogged] = useState(true)
-	if (!isLogged) {
-		return <Navigate to='/messenger/login' />
+	const user = JSON.parse(localStorage.getItem('user'))
+
+	if (!user) {
+		return <Navigate to='/account/login' />
 	}
 
 	return (
