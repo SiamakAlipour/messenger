@@ -1,38 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/Chat.scss'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import PersonIcon from '@mui/icons-material/Person'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import moment from 'moment'
 import Message from '../components/Message'
+import { useParams } from 'react-router'
+import axios from '../service/api/baseUrl'
 function Chat() {
+	let params = useParams()
 	const [chatInput, setChatInput] = useState('')
-	const [msgList, setMsgList] = useState([
-		{
-			name: 'siamak',
-			timestamp: moment().format('LT'),
-			msg: 'سلام علی نجسن',
-			received: true,
-		},
-		{
-			name: 'ali_aziz',
-			timestamp: moment().format('LT'),
-			msg: 'سلام یاخچیم',
-			received: false,
-		},
-	])
+	const [msgList, setMsgList] = useState([])
+	const [avatar, setAvatar] = useState('')
 	const handleInput = (e) => {
 		setChatInput(e.target.value)
 	}
 	const handleSend = (e) => {
 		e.preventDefault()
+		axios
+			.post('/message/send', {
+				senderName: 'siamak',
+				receiverName: params.user,
+				message: chatInput,
+				timestamp: moment().format('LLL'),
+			})
+			.catch((err) => console.log(err))
 		setMsgList([
 			...msgList,
 			{
 				name: 'siamak',
-				timestamp: moment().format('LT'),
-				msg: chatInput,
-				sender: false,
+				timestamp: moment().format('LLL'),
+				message: chatInput,
+				receiver: params.user,
 			},
 		])
 		setChatInput('')
@@ -48,6 +47,25 @@ function Chat() {
 		backButton.classList.remove('buttonShow')
 		chatHeader.classList.remove('show')
 	}
+	useEffect(() => {
+		axios
+			.post('/message/sync', { user1: 'siamak', user2: params.user })
+			.then((res) => {
+				setMsgList(res.data)
+			})
+			.catch((err) => console.log(err))
+	}, [params])
+	useEffect(() => {
+		axios
+			.get(`/account/${params.user}`)
+			.then((res) => {
+				const { avatar } = res.data
+				return setAvatar(avatar)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+	}, [params])
 	return (
 		<div className='chat'>
 			<div className='chat__header' id='chatHeader'>
@@ -57,11 +75,11 @@ function Chat() {
 
 					{/* avatar */}
 					<div className='chat__contactAvatar'>
-						<PersonIcon />
+						{avatar ? <img src={avatar} alt='' /> : <PersonIcon />}
 					</div>
 				</div>
 				<div className='chat__headerRightPart'>
-					<h2>ali_aziz</h2>
+					<h2>{params.user}</h2>
 				</div>
 			</div>
 			<div className='chat__content'>
@@ -69,10 +87,9 @@ function Chat() {
 				<div className='chat__contentPart'>
 					{msgList.map((list, index) => (
 						<Message
-							received={list.received}
-							name={list.name}
+							receiver={list.receiver}
 							timestamp={list.timestamp}
-							msg={list.msg}
+							msg={list.message}
 							key={index}
 						/>
 					))}

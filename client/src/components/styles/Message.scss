@@ -34,7 +34,7 @@
 			padding: 8px 0 8px 0;
 			width: 100%;
 			display: flex;
-			align-items: center;
+			align-items: left;
 			flex-direction: column;
 			&__wrap {
 				width: 100%;
@@ -62,9 +62,7 @@
 			}
 			.message {
 				font-size: 14px;
-
 				padding: 0 15px 0 15px;
-				margin: auto;
 				margin-top: 5px;
 				color: #2b2b2b;
 			}

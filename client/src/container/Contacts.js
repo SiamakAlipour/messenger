@@ -11,7 +11,7 @@ import axios from '../service/api/baseUrl'
 function Contacts() {
 	// let params = useParams()
 	const [contacts, setContacts] = useState([])
-	const [lastMessage, setLastMessage] = useState([])
+
 	// getting contact from api
 
 	useEffect(() => {
@@ -24,32 +24,7 @@ function Contacts() {
 				console.log(err)
 			})
 	}, [])
-	// getting last message from api
 
-	useEffect(() => {
-		const fetchData = async () => {
-			return await Promise.all(
-				contacts.map((contact) => {
-					const data = axios
-						.post('/message/sync', { user1: contact.name, user2: 'siamak' })
-						.then((res) => {
-							const length = res.data.length
-							const lastPM = res.data[length - 1]
-							return lastPM.message
-						})
-						.catch((err) => {
-							console.log(err)
-						})
-					setLastMessage(...lastMessage, data)
-				})
-			)
-		}
-		fetchData()
-		console.log('lastMessage : ', lastMessage)
-	}, [contacts])
-	// useEffect(() => {
-
-	// }, [lastMessage])
 	return (
 		<div className='contacts'>
 			<div className='contacts__header'>
@@ -73,11 +48,10 @@ function Contacts() {
 			</div>
 
 			<ScrollContainer className='contacts__content' hideScrollbars={false}>
-				{contacts.map((contact, index) => (
+				{contacts.map((contact) => (
 					<ContactItem
 						key={contact._id}
 						contactName={contact.name}
-						lastMessage={lastMessage[index]}
 						avatar={''}
 					/>
 				))}
