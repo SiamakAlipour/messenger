@@ -16,17 +16,19 @@ route.get('/', async (req: Request, res: Response) => {
     }
 });
 // get a user by id
-route.get('/:_id', (req: Request, res: Response) => {
-    const { _id } = req.params;
+route.get('/:username', async (req: Request, res: Response) => {
+    const { username } = req.params;
+
     try {
-        const user = User.findOne({ _id: _id });
+        const user = await User.findOne({ username });
+        res.status(200).send(user);
     } catch (error) {
         res.status(400).json({ error });
     }
 });
 // register a user
 route.post('/register', async (req: Request, res: Response) => {
-    const { username, password, email, admin } = req.body;
+    const { username, password, email, admin, avatar } = req.body;
 
     const { error } = registerValidation(req.body);
     if (error) return res.status(400).send(error.details[0].message);
@@ -50,6 +52,7 @@ route.post('/register', async (req: Request, res: Response) => {
         password: hashedPassword,
         email: email.toLowerCase(),
         admin,
+        avatar,
     });
     try {
         await user.save();
@@ -79,6 +82,7 @@ route.post('/login', async (req: Request, res: Response) => {
     //     email: userFind.email,
     //     admin: userFind.admin,
     //     token,
+    //     avatar,
     // });
 });
 // create contact
