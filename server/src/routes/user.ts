@@ -75,15 +75,15 @@ route.post('/login', async (req: Request, res: Response) => {
     let token: string = jwt.sign({ _id: userFind._id }, secretKey, {
         expiresIn: '30d',
     });
-    res.send({ userFind, token });
-    // res.header('auth-header', token).send({
-    //     _id: userFind._id,
-    //     username: userFind.username,
-    //     email: userFind.email,
-    //     admin: userFind.admin,
-    //     token,
-    //     avatar,
-    // });
+    // res.send({ userFind, token });
+    res.header('auth-header', token).send({
+        _id: userFind._id,
+        username: userFind.username,
+        email: userFind.email,
+        admin: userFind.admin,
+        token,
+        avatar: userFind.avatar,
+    });
 });
 // create contact
 route.post('/contacts/:username', async (req: Request, res: Response) => {
