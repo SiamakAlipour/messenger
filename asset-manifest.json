@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/messenger/static/css/main.23ff0007.chunk.css",
-    "main.js": "/messenger/static/js/main.3a366a34.chunk.js",
-    "main.js.map": "/messenger/static/js/main.3a366a34.chunk.js.map",
-    "runtime-main.js": "/messenger/static/js/runtime-main.24ea4f10.js",
-    "runtime-main.js.map": "/messenger/static/js/runtime-main.24ea4f10.js.map",
-    "static/css/2.4659568d.chunk.css": "/messenger/static/css/2.4659568d.chunk.css",
-    "static/js/2.ffc109fb.chunk.js": "/messenger/static/js/2.ffc109fb.chunk.js",
-    "static/js/2.ffc109fb.chunk.js.map": "/messenger/static/js/2.ffc109fb.chunk.js.map",
-    "static/js/3.60ada5b6.chunk.js": "/messenger/static/js/3.60ada5b6.chunk.js",
-    "static/js/3.60ada5b6.chunk.js.map": "/messenger/static/js/3.60ada5b6.chunk.js.map",
+    "main.css": "/messenger/static/css/main.88c499a8.chunk.css",
+    "main.js": "/messenger/static/js/main.e2714afb.chunk.js",
+    "main.js.map": "/messenger/static/js/main.e2714afb.chunk.js.map",
+    "runtime-main.js": "/messenger/static/js/runtime-main.5a87d882.js",
+    "runtime-main.js.map": "/messenger/static/js/runtime-main.5a87d882.js.map",
+    "static/css/2.0a9ec390.chunk.css": "/messenger/static/css/2.0a9ec390.chunk.css",
+    "static/js/2.04055b44.chunk.js": "/messenger/static/js/2.04055b44.chunk.js",
+    "static/js/2.04055b44.chunk.js.map": "/messenger/static/js/2.04055b44.chunk.js.map",
+    "static/js/3.292bb19a.chunk.js": "/messenger/static/js/3.292bb19a.chunk.js",
+    "static/js/3.292bb19a.chunk.js.map": "/messenger/static/js/3.292bb19a.chunk.js.map",
     "index.html": "/messenger/index.html",
-    "static/css/2.4659568d.chunk.css.map": "/messenger/static/css/2.4659568d.chunk.css.map",
-    "static/css/main.23ff0007.chunk.css.map": "/messenger/static/css/main.23ff0007.chunk.css.map",
-    "static/js/2.ffc109fb.chunk.js.LICENSE.txt": "/messenger/static/js/2.ffc109fb.chunk.js.LICENSE.txt",
-    "static/media/Login.scss": "/messenger/static/media/background.6828634e.jpg"
+    "static/css/2.0a9ec390.chunk.css.map": "/messenger/static/css/2.0a9ec390.chunk.css.map",
+    "static/css/main.88c499a8.chunk.css.map": "/messenger/static/css/main.88c499a8.chunk.css.map",
+    "static/js/2.04055b44.chunk.js.LICENSE.txt": "/messenger/static/js/2.04055b44.chunk.js.LICENSE.txt",
+    "static/media/Register.scss": "/messenger/static/media/annie-spratt-At3-0ITk3Po-unsplash.b5f9962d.jpg",
+    "static/media/Chat.scss": "/messenger/static/media/chatBG.fddc586d.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.24ea4f10.js",
-    "static/css/2.4659568d.chunk.css",
-    "static/js/2.ffc109fb.chunk.js",
-    "static/css/main.23ff0007.chunk.css",
-    "static/js/main.3a366a34.chunk.js"
+    "static/js/runtime-main.5a87d882.js",
+    "static/css/2.0a9ec390.chunk.css",
+    "static/js/2.04055b44.chunk.js",
+    "static/css/main.88c499a8.chunk.css",
+    "static/js/main.e2714afb.chunk.js"
   ]
 }
