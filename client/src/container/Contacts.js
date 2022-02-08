@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import ContactItem from '../components/ContactItem'
 import './styles/Contacts.scss'
 // import PersonIcon from '@mui/icons-material/Person'
@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import axios from '../service/api/baseUrl'
 function Contacts() {
 	// let params = useParams()
+	const contactRef = useRef()
 	const [contacts, setContacts] = useState([])
 	const [contactInput, setContactInput] = useState('')
 	const [isAddContact, setIsAddContact] = useState(false)
@@ -19,6 +20,17 @@ function Contacts() {
 	const logout = () => {
 		localStorage.removeItem('user')
 		window.location.reload()
+	}
+	const hanldeAddContact = (e) => {
+		e.preventDefault()
+		axios
+			.post(`/account/contacts/${user.username}`, { contactName: contactInput })
+			.then((res) => {
+				alert('Contact added')
+				window.location.reload()
+			})
+			.catch((err) => alert(err))
+		setIsAddContact(false)
 	}
 	// getting contact from api
 
@@ -42,7 +54,11 @@ function Contacts() {
 				</div>
 
 				<div className='contacts__selfOptions'>
-					<IconButton color='inherit' onClick={() => setIsAddContact(true)}>
+					<IconButton
+						color='inherit'
+						onClick={() => {
+							setIsAddContact(true)
+						}}>
 						<PersonAddIcon />
 					</IconButton>
 					<IconButton color='inherit'>
@@ -63,15 +79,10 @@ function Contacts() {
 							type='text'
 							placeholder='contact name'
 							value={contactInput}
+							ref={contactRef}
 							onChange={(e) => setContactInput(e.target.value)}
 						/>
-						<button
-							type='submit'
-							onClick={(e) => {
-								e.preventDefault()
-								alert('contact added')
-								setIsAddContact(false)
-							}}></button>
+						<button type='submit' onClick={hanldeAddContact}></button>
 					</form>
 				</div>
 			)}
