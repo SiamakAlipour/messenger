@@ -7,6 +7,7 @@ import moment from 'moment'
 import Message from '../components/Message'
 import { useParams } from 'react-router'
 import axios from '../service/api/baseUrl'
+import Pusher from 'pusher-js'
 function Chat() {
 	let params = useParams()
 	const [chatInput, setChatInput] = useState('')
@@ -67,6 +68,26 @@ function Chat() {
 				console.log(err)
 			})
 	}, [params])
+	useEffect(() => {
+		var pusher = new Pusher('eba934b1dbc8ba404bcb', {
+			cluster: 'eu',
+		})
+
+		const channel = pusher.subscribe('messages')
+		channel.bind('updated', function (newMessage) {
+			axios
+				.post('/message/sync', { user1: user.username, user2: params.user })
+				.then((res) => {
+					setMsgList(res.data)
+				})
+				.catch((err) => console.log(err))
+			console.log('hello')
+		})
+		return () => {
+			channel.unbind_all()
+			channel.unsubscribe()
+		}
+	}, [msgList])
 	return (
 		<div className='chat'>
 			<div className='chat__header' id='chatHeader'>

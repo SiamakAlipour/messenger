@@ -7,6 +7,7 @@ export const registerValidation = (data: object) => {
         repeat_password: Joi.ref('password'),
         email: Joi.string().email(),
         admin: Joi.bool(),
+        avatar: Joi.string(),
     });
 
     return schema.validate(data);
