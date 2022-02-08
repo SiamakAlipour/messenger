@@ -29,7 +29,7 @@ function Register() {
 			})
 			.then((res) => {
 				alert('you succesfully registred')
-				navigate('/', { replace: true })
+				navigate('/messenger', { replace: true })
 			})
 			.catch((err) => alert(err))
 	}
