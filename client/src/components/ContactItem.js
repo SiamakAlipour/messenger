@@ -51,7 +51,7 @@ function ContactItem({ contactName }) {
 		<div
 			className='contactItem'
 			onClick={() => {
-				navigate(`/${contactName}`)
+				navigate(`/messenger/${contactName}`)
 			}}>
 			<div className='contactItem__avatar'>
 				{' '}
