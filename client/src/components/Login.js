@@ -15,7 +15,7 @@ function Login() {
 				console.log(res.data)
 				if (res.data.token) {
 					localStorage.setItem('user', JSON.stringify(res.data))
-					navigate('/', { replace: true })
+					navigate('/messenger', { replace: true })
 					window.location.reload()
 				}
 			})

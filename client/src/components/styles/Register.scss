@@ -98,3 +98,22 @@
 		margin-top: 20px;
 	}
 }
+@media screen and (max-width: 680px) {
+	.register {
+		&__content {
+			width: 100%;
+
+			padding: 20px;
+		}
+
+		&__form {
+			width: 100% !important;
+		}
+		.register__input {
+			width: 100% !important;
+		}
+		.register__input {
+			margin-top: 20px;
+		}
+	}
+}

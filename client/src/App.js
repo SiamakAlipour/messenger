@@ -11,11 +11,11 @@ function App() {
 		<Router>
 			<div className='app'>
 				<Routes>
-					<Route path='/' element={<Main />}>
-						<Route path={`/:user`} />
+					<Route path='/messenger' element={<Main />}>
+						<Route path={`/messenger/:user`} />
 					</Route>
-					<Route path='/account/login' element={<Login />} />
-					<Route path='/account/register' element={<Register />} />
+					<Route path='/messenger/account/login' element={<Login />} />
+					<Route path='/messenger/account/register' element={<Register />} />
 				</Routes>
 			</div>
 		</Router>

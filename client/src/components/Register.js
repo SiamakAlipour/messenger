@@ -51,25 +51,38 @@ function Register() {
 					onSubmit={handleRegister}>
 					{({ errors, touched }) => (
 						<Form className='register__form'>
-							<Field name='username' className='form-control register__input' />
+							<Field
+								name='username'
+								className='form-control register__input'
+								placeholder='username'
+							/>
 
 							{touched.username && errors.username && (
 								<p className='text-danger'>{errors.username}</p>
 							)}
-							<Field name='password' className='form-control register__input' />
+							<Field
+								name='password'
+								className='form-control register__input'
+								placeholder='password'
+							/>
 
 							{touched.password && errors.password && (
 								<p className='text-danger'>{errors.password}</p>
 							)}
 							<Field
 								name='repeatPassword'
+								placeholder='repeat password'
 								className='form-control register__input'
 							/>
 
 							{touched.repeatPassword && errors.repeatPassword && (
 								<p className='text-danger'>{errors.repeatPassword}</p>
 							)}
-							<Field name='email' className='form-control register__input' />
+							<Field
+								name='email'
+								className='form-control register__input'
+								placeholder='email'
+							/>
 
 							{/* If this field has been touched, and it contains an error, display
 

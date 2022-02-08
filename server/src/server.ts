@@ -9,6 +9,9 @@ const app: Application = express();
 dotenv.config();
 //middlewares
 
+app.get('/', (req, res) => {
+    res.send('test');
+});
 app.use(express.json());
 app.use(cors());
 app.use('/api/account', user);

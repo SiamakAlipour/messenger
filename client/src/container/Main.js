@@ -9,7 +9,7 @@ function Main() {
 	const user = JSON.parse(localStorage.getItem('user'))
 
 	if (!user) {
-		return <Navigate to='/account/login' />
+		return <Navigate to='/messenger/account/login' />
 	}
 
 	return (
