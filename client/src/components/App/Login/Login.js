@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
-import './styles/Login.scss'
-import { Formik } from 'formik'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from '../service/api/baseUrl'
+import React, { useState } from 'react';
+import './Login.scss';
+import { Formik } from 'formik';
+import { Link, useNavigate } from 'react-router-dom';
+
+import axios from '../../../service/api/baseUrl';
 function Login() {
-	const [username, setUsername] = useState('')
-	const [password, setPassword] = useState('')
-	let navigate = useNavigate()
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	let navigate = useNavigate();
 	const handleLogin = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		axios
 			.post('/account/login', { username, password })
 			.then((res) => {
-				console.log(res.data)
+				console.log(res.data);
 				if (res.data.token) {
-					localStorage.setItem('user', JSON.stringify(res.data))
-					navigate('/messenger', { replace: true })
-					window.location.reload()
+					localStorage.setItem('user', JSON.stringify(res.data));
+					navigate('/messenger', { replace: true });
+					window.location.reload();
 				}
 			})
-			.catch((err) => console.log(err))
-	}
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<div className='login'>
@@ -73,7 +74,7 @@ function Login() {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
 
-export default Login
+export default Login;

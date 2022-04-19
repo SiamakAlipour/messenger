@@ -1,49 +1,49 @@
-import React, { useEffect, useState, useRef } from 'react'
-import ContactItem from '../components/ContactItem'
-import './styles/Contacts.scss'
+import React, { useEffect, useState, useRef } from 'react';
+import ContactItem from '../components/ContactItem';
+import './styles/Contacts.scss';
 // import PersonIcon from '@mui/icons-material/Person'
-import SettingsIcon from '@mui/icons-material/Settings'
-import IconButton from '@mui/material/IconButton'
-import PersonAddIcon from '@mui/icons-material/PersonAdd'
-import ScrollContainer from 'react-indiana-drag-scroll'
-import LogoutIcon from '@mui/icons-material/Logout'
-import CloseIcon from '@mui/icons-material/Close'
+import SettingsIcon from '@mui/icons-material/Settings';
+import IconButton from '@mui/material/IconButton';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import LogoutIcon from '@mui/icons-material/Logout';
+import CloseIcon from '@mui/icons-material/Close';
 // import { useParams } from 'react-router-dom'
-import axios from '../service/api/baseUrl'
+import axios from '../service/api/baseUrl';
 function Contacts() {
 	// let params = useParams()
-	const contactRef = useRef()
-	const [contacts, setContacts] = useState([])
-	const [contactInput, setContactInput] = useState('')
-	const [isAddContact, setIsAddContact] = useState(false)
-	const user = JSON.parse(localStorage.getItem('user'))
+	const contactRef = useRef();
+	const [contacts, setContacts] = useState([]);
+	const [contactInput, setContactInput] = useState('');
+	const [isAddContact, setIsAddContact] = useState(false);
+	const user = JSON.parse(localStorage.getItem('user'));
 	const logout = () => {
-		localStorage.removeItem('user')
-		window.location.reload()
-	}
+		localStorage.removeItem('user');
+		window.location.reload();
+	};
 	const hanldeAddContact = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		axios
 			.post(`/account/contacts/${user.username}`, { contactName: contactInput })
 			.then((res) => {
-				alert('Contact added')
-				window.location.reload()
+				alert('Contact added');
+				window.location.reload();
 			})
-			.catch((err) => alert(err))
-		setIsAddContact(false)
-	}
+			.catch((err) => alert(err));
+		setIsAddContact(false);
+	};
 	// getting contact from api
 
 	useEffect(() => {
 		axios
 			.get(`/account/contacts/${user.username}`)
 			.then((res) => {
-				setContacts(res.data)
+				setContacts(res.data);
 			})
 			.catch((err) => {
-				console.log(err)
-			})
-	}, [])
+				console.log(err);
+			});
+	}, []);
 
 	return (
 		<div className='contacts'>
@@ -57,7 +57,7 @@ function Contacts() {
 					<IconButton
 						color='inherit'
 						onClick={() => {
-							setIsAddContact(true)
+							setIsAddContact(true);
 						}}>
 						<PersonAddIcon />
 					</IconButton>
@@ -96,7 +96,7 @@ function Contacts() {
 				))}
 			</ScrollContainer>
 		</div>
-	)
+	);
 }
 
-export default Contacts
+export default Contacts;

@@ -1,8 +1,8 @@
-.register {
+.login {
 	// width: 100%;
 
 	height: 100%;
-	background-image: url(../../assets/images/annie-spratt-At3-0ITk3Po-unsplash.jpg);
+	background-image: url(../../../assets/images/annie-spratt-At3-0ITk3Po-unsplash.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -64,7 +64,7 @@
 				font-weight: bold;
 				line-height: 34px;
 				letter-spacing: 0.035em;
-				color: #0b5ed7;
+				color: #b33663;
 				transition: 0.4s;
 				&:hover {
 					transform: scale(1.05);
@@ -73,17 +73,13 @@
 		}
 	}
 	&__form {
-		> button {
+		button {
 			width: 100%;
 			margin-top: 20px;
 		}
-		p {
-			font-size: 14px;
-			margin-top: 5px;
-			margin-bottom: -12px;
-		}
+		margin-top: 20px;
 	}
-	.register__input {
+	.login__input {
 		width: 500px !important;
 		background: #fafafa;
 		box-shadow: 5px 4px 4px 5px rgba(201, 201, 201, 0.25);
@@ -94,25 +90,25 @@
 			background-color: #e3f7ff;
 		}
 	}
-	.register__checkbox {
+	.login__checkbox {
 		margin-top: 20px;
 	}
 }
+
 @media screen and (max-width: 680px) {
-	.register {
+	.login {
 		&__content {
 			width: 100%;
-
 			padding: 20px;
 		}
 
 		&__form {
 			width: 100% !important;
 		}
-		.register__input {
+		.login__input {
 			width: 100% !important;
 		}
-		.register__input {
+		.login__checkbox {
 			margin-top: 20px;
 		}
 	}
