@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './styles/ContactItem.scss';
+import './ContactItem.scss';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
 import axios from '../service/api/baseUrl';

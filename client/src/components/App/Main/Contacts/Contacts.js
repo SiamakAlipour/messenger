@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ContactItem from '../components/ContactItem';
-import './styles/Contacts.scss';
+import './Contacts.scss';
 // import PersonIcon from '@mui/icons-material/Person'
 import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';

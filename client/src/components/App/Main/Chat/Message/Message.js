@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles/Message.scss'
+import './Message.scss'
 import { useParams } from 'react-router'
 function Message({ receiver, timestamp, msg }) {
 	let params = useParams()

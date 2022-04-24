@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './styles/Chat.scss'
+import './Chat.scss'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import PersonIcon from '@mui/icons-material/Person'
 import TelegramIcon from '@mui/icons-material/Telegram'
