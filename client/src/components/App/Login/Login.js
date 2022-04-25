@@ -3,7 +3,7 @@ import './Login.scss';
 import { Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
-import axios from '../../../service/api/baseUrl';
+import axios from 'service/api/baseUrl';
 function Login() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');

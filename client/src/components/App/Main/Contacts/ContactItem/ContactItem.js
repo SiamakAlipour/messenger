@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ContactItem.scss';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
-import axios from '../service/api/baseUrl';
+import axios from 'service/api/baseUrl';
 
 function ContactItem({ contactName }) {
 	let navigate = useNavigate();

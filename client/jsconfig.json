@@ -1,0 +1,15 @@
+{
+	"description": "This is to config VS Code to recongnise our aliases, ala https://medium.com/@justintulk/solve-module-import-aliasing-for-webpack-jest-and-vscode-74007ce4adc9",
+	"compilerOptions": {
+		"target": "ES6",
+		"allowSyntheticDefaultImports": false,
+		"baseUrl": "./src",
+		"paths": {
+			"service/*": ["./src/service/*"],
+			"routes/*": ["./src/routes/*"],
+			"components/*": ["./src/components/*"],
+			"assets/*": ["./src/assets/*"]
+		}
+	},
+	"exclude": ["node_modules", "dist"]
+}

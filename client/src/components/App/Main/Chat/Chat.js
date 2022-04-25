@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import './Chat.scss'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import PersonIcon from '@mui/icons-material/Person'
-import TelegramIcon from '@mui/icons-material/Telegram'
-import moment from 'moment'
-import Message from '../components/Message'
-import { useParams } from 'react-router'
-import axios from '../service/api/baseUrl'
-import Pusher from 'pusher-js'
+import React, { useEffect, useState } from 'react';
+import './Chat.scss';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import PersonIcon from '@mui/icons-material/Person';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import moment from 'moment';
+import Message from './Message';
+import { useParams } from 'react-router';
+import axios from 'service/api/baseUrl';
+import Pusher from 'pusher-js';
 function Chat() {
-	let params = useParams()
-	const [chatInput, setChatInput] = useState('')
-	const [msgList, setMsgList] = useState([])
-	const [avatar, setAvatar] = useState('')
-	const user = JSON.parse(localStorage.getItem('user'))
+	let params = useParams();
+	const [chatInput, setChatInput] = useState('');
+	const [msgList, setMsgList] = useState([]);
+	const [avatar, setAvatar] = useState('');
+	const user = JSON.parse(localStorage.getItem('user'));
 	const handleInput = (e) => {
-		setChatInput(e.target.value)
-	}
+		setChatInput(e.target.value);
+	};
 	const handleSend = (e) => {
-		e.preventDefault()
+		e.preventDefault();
 		axios
 			.post('/message/send', {
 				senderName: user.username,
@@ -26,7 +26,7 @@ function Chat() {
 				message: chatInput,
 				timestamp: moment().format('LLL'),
 			})
-			.catch((err) => console.log(err))
+			.catch((err) => console.log(err));
 		setMsgList([
 			...msgList,
 			{
@@ -35,59 +35,59 @@ function Chat() {
 				message: chatInput,
 				receiver: params.user,
 			},
-		])
-		setChatInput('')
-	}
+		]);
+		setChatInput('');
+	};
 	const handleClick = () => {
-		let rightPart = document.getElementById('right')
-		let leftPart = document.getElementById('left')
-		let backButton = document.getElementById('backButton')
-		let chatHeader = document.getElementById('chatHeader')
+		let rightPart = document.getElementById('right');
+		let leftPart = document.getElementById('left');
+		let backButton = document.getElementById('backButton');
+		let chatHeader = document.getElementById('chatHeader');
 		// mainPart.style.flexDirection = 'column';
-		rightPart.classList.remove('right__click')
-		leftPart.classList.remove('left__click')
-		backButton.classList.remove('buttonShow')
-		chatHeader.classList.remove('show')
-	}
+		rightPart.classList.remove('right__click');
+		leftPart.classList.remove('left__click');
+		backButton.classList.remove('buttonShow');
+		chatHeader.classList.remove('show');
+	};
 	useEffect(() => {
 		axios
 			.post('/message/sync', { user1: user.username, user2: params.user })
 			.then((res) => {
-				setMsgList(res.data)
+				setMsgList(res.data);
 			})
-			.catch((err) => console.log(err))
-	}, [params])
+			.catch((err) => console.log(err));
+	}, [params]);
 	useEffect(() => {
 		axios
 			.get(`/account/${params.user}`)
 			.then((res) => {
-				const { avatar } = res.data
-				return setAvatar(avatar)
+				const { avatar } = res.data;
+				return setAvatar(avatar);
 			})
 			.catch((err) => {
-				console.log(err)
-			})
-	}, [params])
+				console.log(err);
+			});
+	}, [params]);
 	useEffect(() => {
 		var pusher = new Pusher('eba934b1dbc8ba404bcb', {
 			cluster: 'eu',
-		})
+		});
 
-		const channel = pusher.subscribe('messages')
+		const channel = pusher.subscribe('messages');
 		channel.bind('updated', function (newMessage) {
 			axios
 				.post('/message/sync', { user1: user.username, user2: params.user })
 				.then((res) => {
-					setMsgList(res.data)
+					setMsgList(res.data);
 				})
-				.catch((err) => console.log(err))
-			console.log('hello')
-		})
+				.catch((err) => console.log(err));
+			console.log('hello');
+		});
 		return () => {
-			channel.unbind_all()
-			channel.unsubscribe()
-		}
-	}, [msgList])
+			channel.unbind_all();
+			channel.unsubscribe();
+		};
+	}, [msgList]);
 	return (
 		<div className='chat'>
 			<div className='chat__header' id='chatHeader'>
@@ -131,7 +131,7 @@ function Chat() {
 				</form>
 			</div>
 		</div>
-	)
+	);
 }
 
-export default Chat
+export default Chat;

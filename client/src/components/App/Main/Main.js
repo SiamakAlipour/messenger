@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Main.scss';
 import { Navigate } from 'react-router-dom';
-import Contacts from '../../../container/Contacts';
-import Chat from '../../../container/Chat';
+import Contacts from './Contacts';
+import Chat from './Chat';
 import { useParams } from 'react-router-dom';
 function Main() {
 	let params = useParams();
+
 	const user = JSON.parse(localStorage.getItem('user'));
 
 	// if (!user) {
