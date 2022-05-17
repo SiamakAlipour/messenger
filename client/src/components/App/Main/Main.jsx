@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Main.scss';
 import { Navigate, useParams } from 'react-router-dom';
 import Contacts from './Contacts';
@@ -9,9 +9,9 @@ function Main() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // if (!user) {
-  // 	return <Navigate to='/messenger/account/login' />;
-  // }
+  if (!user) {
+    return <Navigate to="/messenger/account/login" />;
+  }
 
   return (
     <div className="main" id="main">

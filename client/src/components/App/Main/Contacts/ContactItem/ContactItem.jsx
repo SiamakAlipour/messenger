@@ -32,8 +32,8 @@ function ContactItem({ contactName }) {
     axios
       .get(`/account/${contactName}`)
       .then((res) => {
-        const { avatar } = res.data;
-        return setAvatar(avatar);
+        const { avatarData } = res.data;
+        return setAvatar(avatarData);
       })
       .catch((err) => {
         console.log(err);

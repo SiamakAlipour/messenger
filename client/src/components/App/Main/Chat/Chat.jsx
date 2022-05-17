@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react';
 import './Chat.scss';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -97,7 +98,9 @@ function Chat() {
           <ArrowBackIosNewIcon id="backButton" onClick={handleClick} />
 
           {/* avatar */}
-          <div className="chat__contactAvatar">{avatar ? <img src={avatar} alt="" /> : <PersonIcon />}</div>
+          <div className="chat__contactAvatar">
+            {avatar ? <img src={avatar} alt="" /> : <PersonIcon />}
+          </div>
         </div>
         <div className="chat__headerRightPart">
           <h2>{params.user}</h2>
@@ -106,8 +109,13 @@ function Chat() {
       <div className="chat__content">
         {/* chat part */}
         <div className="chat__contentPart">
-          {msgList.map((list, index) => (
-            <Message receiver={list.receiver} timestamp={list.timestamp} msg={list.message} key={index} />
+          {msgList.map((list) => (
+            <Message
+              receiver={list.receiver}
+              timestamp={list.timestamp}
+              msg={list.message}
+              key={list._id}
+            />
           ))}
         </div>
         {/* chat input */}

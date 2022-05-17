@@ -6,11 +6,16 @@
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "env": {
+    "node" : true,
+    "browser" : true,
+  }
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": 0,
     "no-alert": 0,
     "no-undef": 1,
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "no-console": 0
   }
 }
