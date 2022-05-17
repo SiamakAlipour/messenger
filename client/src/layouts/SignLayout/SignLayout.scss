@@ -1,0 +1,64 @@
+.SignLayout {
+  // width: 100%;
+
+  height: 100%;
+  background-image: url(../../../assets/images/annie-spratt-At3-0ITk3Po-unsplash.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__title {
+    width: 100%;
+    top: 20px;
+
+    margin: auto;
+    position: absolute;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: 1.185em;
+    user-select: none;
+  }
+  &__content {
+    position: absolute;
+    width: 645px;
+    height: 575px;
+    background: rgba(233, 233, 233, 0.4);
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    box-sizing: border-box;
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 0px 2px 2px rgba($color: #000000, $alpha: 0.1);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    > h3 {
+      color: white;
+      font-family: Andika, Arial;
+      font-style: normal;
+      font-weight: normal;
+      text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15);
+      font-size: 72px;
+      line-height: 116px;
+      user-select: none;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .SignLayout {
+    &__content {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+}
