@@ -7,9 +7,9 @@
     "plugin:prettier/recommended"
   ],
   "env": {
-    "node" : true,
-    "browser" : true,
-  }
+    "node": true,
+    "browser": true
+  },
   "plugins": ["react"],
   "rules": {
     "react/jsx-filename-extension": 0,
